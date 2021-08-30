@@ -1,9 +1,9 @@
+// @ts-ignore
 import "@fontsource/roboto";
 import { useState, useEffect, useMemo } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { Button, Grid, makeStyles } from "@material-ui/core";
 import { Provider } from "@project-serum/anchor";
-// @ts-ignore
 import Wallet from "@project-serum/sol-wallet-adapter";
 import {
   Signer,
@@ -128,7 +128,7 @@ class NotifyingProvider extends Provider {
   // Function to call whenever the provider sends a transaction;
   private onTransaction: (
     tx: TransactionSignature | undefined,
-    err?: Error
+    err?: Error | any
   ) => void;
 
   constructor(
@@ -150,7 +150,7 @@ class NotifyingProvider extends Provider {
       const txSig = await super.send(tx, signers, opts);
       this.onTransaction(txSig);
       return txSig;
-    } catch (err) {
+    } catch (err: any) {
       this.onTransaction(undefined, err);
       return "";
     }

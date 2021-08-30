@@ -1,3 +1,4 @@
+// @ts-ignore
 import { useState } from "react";
 import {
   PublicKey,
